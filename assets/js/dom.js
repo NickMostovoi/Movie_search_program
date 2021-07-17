@@ -1,4 +1,3 @@
-import { prependListener } from "gulp";
 
 export let movieList = null;
 export let inputSearch = null;
@@ -60,96 +59,113 @@ export const createStyle = () => {
   document.head.appendChild(headStyle);
 };
 
-
 const createElement = ({
-    type,
-    attrs,
-    container = null,
-    position = 'append',
-    evt = null,
-    handler = null
+  type,
+  attrs,
+  container = null,
+  position = 'append',
+  evt = null,
+  handler = null
 }) => {
-    const el = document.createElement(type);
+  const el = document.createElement(type);
 
-    for (let key in attrs) {
-        if(key !=='innerText') {
-            el.setAttribute(key, attrs[key]);
-        } else {
-            el.innerHTML = attrs[key];
-        }
+  for (let key in attrs) {
+    if (key !== 'innerText') {
+      el.setAttribute(key, attrs[key]);
+    } else {
+      el.innerHTML = attrs[key];
     }
+  }
 
-    if (container && position === 'append') container.append(el);
-    if (container && position === 'prepend') container.append(el);
-    if (evt && handler) el.addEventListener(evt, handler);
+  if (container && position === 'append') container.append(el);
+  if (container && position === 'prepend') container.append(el);
+  if (evt && handler) el.addEventListener(evt, handler);
 
-    return el;
+  return el;
 };
 
 export const createMarkup = () => {
-  const container = createElement ({
-      type: 'div',
-      attrs: { class: 'container' },
-      container: document.body,
-      position: 'prepend'
+  const container = createElement({
+    type: 'div',
+    attrs: { class: 'container' },
+    container: document.body,
+    position: 'prepend'
   });
 
   createElement({
     type: 'h1',
-    attrs: { innerText: 'Приложения для поиска фильмов'},
+    attrs: { innerText: 'Приложения для поиска фильмов' },
     container
   });
 
-  const searchBox = createElement ({
+  const searchBox = createElement({
     type: 'div',
     attrs: { class: 'search' },
     container
   });
 
   createElement('label', {
-      class: 'search__label-input',
-      for: 'search',
-      innerText: 'Поиск фильмов'
+    class: 'search__label-input',
+    for: 'search',
+    innerText: 'Поиск фильмов'
   }, searchBox);
 
   inputSearch = createElement({
-      type: 'input',
-      attrs: {
-          class: 'search__input',
-          id: 'search',
-          placeholder: 'Начните вводить текст...',
-          type: 'text'
-      },
-      container: searchBox
+    type: 'input',
+    attrs: {
+      class: 'search__input',
+      id: 'search',
+      placeholder: 'Начните вводить текст...',
+      type: 'text'
+    },
+    container: searchBox
   });
 
-  
+  createElement({
+    type: 'input',
+    attrs: {
+      class: 'search__checkbox',
+      id: 'checkbox',
+      type: 'checkbox',
+    },
+    container: searchBox,
+    evt: 'click',
+    handler: () => triggerMode = !triggerMode
+  });
 
-//   const movies = document.createElement('div');
+  createElement({
+    type: 'label',
+    attrs: {
+      class: 'search__label-checkbox',
+      for: 'checkbox',
+      innerText: 'Добавлять фильмы к списку'
+    },
+    container: searchBox,
+  });
 
-//   movieWrapper.classList.add('wrapper');
-
-//   movies.classList.add('movies');
-//   movieWrapper.appendChild(movies);
-
-//   document.body.appendChild(movieWrapper);
-
-//   movieList = document.querySelector('.movies');
+  movieList = createElement({
+    type: 'div',
+    attrs: { class: 'movies' },
+    container
+  });
 };
 
-const addMovieToList = (movie) => {
-  const item = document.createElement('div');
-  const img = document.createElement('img');
+export const clearMoviesMarkup = (el) => el && (el.innerHTML = '');
 
-  img.src = movie.Poster;
-  img.classList.add('movie__image');
+export const addMovieToList = (movie) => {
+  const item = createElement({
+    type: 'div',
+    attrs: { class: 'movie' },
+    container: movieList
+  });
 
-  item.classList.add('movie');
-
-  item.appendChild(img);
-
-  movieList.appendChild(item);
+  createElement({
+    type: 'img',
+    attrs: {
+      class: 'movie__image',
+      src: /^(http|https):\/\//i.test(movie.Poster) ? movie.Poster : 'assets/img/no-image.jpg'
+    },
+    container: item
+  });
 };
 
-createMarkup();
-createStyle();
