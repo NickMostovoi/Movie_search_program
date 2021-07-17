@@ -26,7 +26,7 @@ const getData = (url) => fetch(url)
         if (!json || !json.Search) throw Error('Сервер вернул неправильный объект');
 
         return json.Search;
-    });    
+    });
 
 const inputSearchHandler = (e) => {
     debounce(() => {
@@ -36,8 +36,8 @@ const inputSearchHandler = (e) => {
             if (!triggerMode) clearMoviesMarkup(movieList);
 
             getData(`${siteUrl}?apikey=379c8492&s=${searchString}`)
-            .then((movies) => movies.forEach((movie) => addMovieToList(movie)))
-            .catch((err) => console.log(err));
+                .then((movies) => movies.forEach((movie) => addMovieToList(movie)))
+                .catch((err) => console.log(err));
         }
 
         searchLast = searchString;
@@ -53,4 +53,3 @@ export const appInit = (url) => {
     inputSearch.addEventListener('keyup', inputSearchHandler);
 
 };
-    
