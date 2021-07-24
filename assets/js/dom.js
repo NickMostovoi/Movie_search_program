@@ -55,6 +55,7 @@ export const createStyle = () => {
     }
   `;
 
+
   document.head.appendChild(headStyle);
 };
 
@@ -66,6 +67,7 @@ const createElement = ({
   evt = null,
   handler = null
 }) => {
+
   const el = document.createElement(type);
 
   for (let key in attrs) {
@@ -76,12 +78,14 @@ const createElement = ({
     }
   }
 
+
   if (container && position === 'append') container.append(el);
   if (container && position === 'prepend') container.append(el);
   if (evt && handler) el.addEventListener(evt, handler);
 
   return el;
 };
+
 
 export const createMarkup = () => {
   const container = createElement({
@@ -90,6 +94,7 @@ export const createMarkup = () => {
     container: document.body,
     position: 'prepend'
   });
+
 
   createElement({
     type: 'h1',
@@ -103,6 +108,7 @@ export const createMarkup = () => {
     container
   });
 
+  
   createElement('label', {
     class: 'search__label-input',
     for: 'search',
