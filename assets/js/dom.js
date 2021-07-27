@@ -79,7 +79,7 @@ export const createStyle = () => {
     }
     @media (max-width: 786px) {
       .search__checkbox {
-        margin-left: 25%;
+        margin-left: 24%;
       }
     }
   `;
