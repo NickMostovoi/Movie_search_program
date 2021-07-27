@@ -23,6 +23,7 @@ export const createStyle = () => {
         rgb(27, 27, 27) 100%
       );
       background-size: 100% 100vh;
+      background-attachment: fixed;
     }
     .container {
       padding: 20px;
@@ -51,12 +52,9 @@ export const createStyle = () => {
     .search {
       margin-bottom: 30px;
     }
-    .search__checkbox {
-      margin-left: 25%;
-    }
     .search__input {
       padding: 10px 15px;
-      width: 50%;
+      width: 60%;
       display: block;
       border: 2px solid #0bb4c0;
       border-radius: 5px;
@@ -68,13 +66,21 @@ export const createStyle = () => {
       display: block;
       margin-bottom: 7px;
     }
+    .search__checkbox {
+      margin-left: 26%;
+    }
     .search__label-checkbox {
-      font-size: 14px;
+      font-size: 12px;
       display: block;
       margin-top: -17px;
       margin-left: 28%;
       color: #ffffff;
       text-shadow: 0 0 0.8em #ffffff;
+    }
+    @media (max-width: 786px) {
+      .search__checkbox {
+        margin-left: 25%;
+      }
     }
   `;
 
