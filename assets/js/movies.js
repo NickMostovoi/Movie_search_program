@@ -14,7 +14,6 @@ let searchLast = null;
 const debounce = (() => {
     let timer = null;
 
-
     return (cb, ms) => {
         if (timer !== null) clearTimeout(timer);
         timer = setTimeout(cb, ms);
@@ -26,7 +25,6 @@ const getData = (url) => fetch(url)
     .then((json) => {
         if (!json || !json.Search) throw Error('Сервер вернул неправильный объект');
 
-
         return json.Search;
     });
 
@@ -36,7 +34,6 @@ const inputSeachHandler = (e) => {
 
         if (searchString && searchString.length > 3 && searchString !== searchLast) {
             if (!triggerMode) clearMoviesMarkup(movieList);
-
 
             getData(`${siteUrl}?apikey=379c8492&s=${searchString}`)
                 .then((movies) => movies.forEach((movie) => addMovieToList(movie)))
@@ -48,13 +45,10 @@ const inputSeachHandler = (e) => {
     }, 2000);
 };
 
-
-
 export const appInit = (url) => {
     createMarkup();
     createStyle();
     siteUrl = url;
 
     inputSearch.addEventListener('keyup', inputSeachHandler);
-
 };

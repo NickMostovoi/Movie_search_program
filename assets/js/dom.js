@@ -11,12 +11,28 @@ export const createStyle = () => {
     }
     body {
       margin: 0;
-      font-family: Arial, serif;
+      font-family: "Comfortaa";
+      background: linear-gradient(
+        135deg,
+        rgb(149, 149, 149) 0%,
+        rgb(13, 13, 13) 46%,
+        rgb(1, 1, 1) 50%,
+        rgb(10, 10, 10) 53%,
+        rgb(78, 78, 78) 76%,
+        rgb(56, 56, 56) 87%,
+        rgb(27, 27, 27) 100%
+      );
+      background-size: 100% 100vh;
     }
     .container {
       padding: 20px;
       max-width: 1280px;
       margin: auto;
+    }
+    h1 {
+      font-size: 33px;
+      color: #0bb4c0;
+      text-align: center;
     }
     .movies {
       display: grid;
@@ -35,26 +51,33 @@ export const createStyle = () => {
     .search {
       margin-bottom: 30px;
     }
+    .search__checkbox {
+      margin-left: 445px;
+    }
+    .search__input {
+      padding: 10px 15px;
+      width: 50%;
+      display: block;
+      border: 2px solid #0bb4c0;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    
+      margin-left: auto;
+      margin-right: auto;
+    }
     .search__label-input {
       display: block;
       margin-bottom: 7px;
     }
-    .search__input {
-      padding: 10px 15px;
-      width: 400px;
-      display: block;
-      border: 2px solid grey;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
     .search__label-checkbox {
-      font-size: 12px;
+      font-size: 14px;
       display: block;
       margin-top: -17px;
-      margin-left: 25px;
+      margin-left: 465px;
+      color: #ffffff;
+      text-shadow: 0 0 0.8em #ffffff;
     }
   `;
-
 
   document.head.appendChild(headStyle);
 };
@@ -78,14 +101,12 @@ const createElement = ({
     }
   }
 
-
   if (container && position === 'append') container.append(el);
   if (container && position === 'prepend') container.append(el);
   if (evt && handler) el.addEventListener(evt, handler);
 
   return el;
 };
-
 
 export const createMarkup = () => {
   const container = createElement({
@@ -94,7 +115,6 @@ export const createMarkup = () => {
     container: document.body,
     position: 'prepend'
   });
-
 
   createElement({
     type: 'h1',
@@ -108,7 +128,6 @@ export const createMarkup = () => {
     container
   });
 
-  
   createElement('label', {
     class: 'search__label-input',
     for: 'search',
