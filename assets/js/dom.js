@@ -52,7 +52,7 @@ export const createStyle = () => {
       margin-bottom: 30px;
     }
     .search__checkbox {
-      margin-left: 445px;
+      margin-left: 25%;
     }
     .search__input {
       padding: 10px 15px;
@@ -61,7 +61,6 @@ export const createStyle = () => {
       border: 2px solid #0bb4c0;
       border-radius: 5px;
       margin-bottom: 10px;
-    
       margin-left: auto;
       margin-right: auto;
     }
@@ -73,7 +72,7 @@ export const createStyle = () => {
       font-size: 14px;
       display: block;
       margin-top: -17px;
-      margin-left: 465px;
+      margin-left: 28%;
       color: #ffffff;
       text-shadow: 0 0 0.8em #ffffff;
     }
